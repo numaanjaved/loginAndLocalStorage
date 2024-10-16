@@ -1,0 +1,5 @@
+<<<<<<< HEAD
+// all the views will be here
+=======
+// all the views will be here 
+>>>>>>> eaf4272a46580a1fe703436a2f2cbe01ce27867c

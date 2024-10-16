@@ -1,0 +1,77 @@
+class LoginValidation {
+    #attribute;
+    setAttribute(attr) {
+        this.#attribute = attr;
+    }
+    getAttribute() {
+        return this.#attribute;
+    }
+    isNull(attribute) {
+        let nullCheck = true;
+        if (attribute.value === "" || attribute.value === null) {
+            nullCheck = false;
+        }
+        return nullCheck;
+    }
+    usernameValidation(attribute, admin) {
+        let userNameCheck = true;
+
+        if (attribute.id === "login_userName") {
+            if (attribute.value != admin.getAdminName()) {
+                console.log(`Value from False Condition UserNames: `, attribute.value);
+                userNameCheck = false;
+            } else {
+                console.log(`Value from True UserNames Condition: `, attribute.value);
+            }
+        }
+        console.log(`UserName Check is: ${userNameCheck}`);
+        return userNameCheck;
+    }
+    userPasswordValidation(attribute, admin) {
+        let passwordCheck = true;
+        if (attribute.id === "login_userPassword") {
+            if (attribute.value != admin.getPassword()) {
+                console.log(`Value from False Condition UserPassword: `, attribute.value);
+                passwordCheck = false;
+            } else {
+
+                console.log(`Value from True Condition userPAssword: `, attribute.value);
+            }
+        }
+        console.log(`Password Check is: ${passwordCheck}`);
+        return passwordCheck;
+    }
+    invalidLogin(attribute) {
+        let adminObj = usersDataArray.find(userData => userData.getPassword());
+        let MatchCheck = true;
+
+        if (!this.usernameValidation(attribute, adminObj)) {
+            // console.log(`Condition is false`);
+            MatchCheck = false;
+        }
+        if (!this.userPasswordValidation(attribute, adminObj)) {
+            MatchCheck = false;
+        }
+        console.log(`Match Check is: ${MatchCheck}`)
+        return MatchCheck;
+    }
+    checkLoginValidation(attribute) {
+        let validateData = true;
+        this.setAttribute(attribute)
+        if (!this.isNull(this.getAttribute())) {
+            errorMsg(this.getAttribute(), `${error[0].errorName}: ${error[0].errorMessage}`);
+            validateData = false;
+
+        } else {
+            // successMsg(this.getAttribute());
+            if (!this.invalidLogin(this.getAttribute())) {
+                errorMsg(this.getAttribute(), `${error[5].errorName}: ${error[5].errorMessage}`);
+                validateData = false;
+            } else {
+                successMsg(this.getAttribute());
+            }
+        }
+
+        return validateData;
+    }
+};

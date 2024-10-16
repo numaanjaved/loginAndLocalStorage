@@ -1,0 +1,5 @@
+<<<<<<< HEAD
+// all the interactions with model and view will happen here
+=======
+// all the interactions with model and view will happen here 
+>>>>>>> eaf4272a46580a1fe703436a2f2cbe01ce27867c
