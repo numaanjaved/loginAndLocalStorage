@@ -77,7 +77,14 @@ class Validation {
     };
     updateUser(userDataArr) {
         if (userIndexCheck !== null) {
-            usersDataArray[userIndexCheck].update(userDataArr);
+            let LS = JSON.parse(localStorage.getItem('DataArray'));
+            let currentUser = LS[userIndexCheck];
+            let updateUser = new User();
+            updateUser.UserID = currentUser.UserID;
+            updateUser.userType = currentUser.userType;
+            updateUser.update(userDataArr);
+            LS[userIndexCheck] = updateUser;
+            localStorage.setItem('DataArray', JSON.stringify(LS));
             userIndexCheck = null;
         }
     };
@@ -103,7 +110,14 @@ class Validation {
     };
     updateAdmin(userDataArr) {
         if (userIndexCheck !== null) {
-            usersDataArray[userIndexCheck].update(userDataArr);
+            let LS = JSON.parse(localStorage.getItem('DataArray'));
+            let currentAdmin = LS[userIndexCheck];
+            let updateAdminData = new Admin();
+            updateAdminData.UserID = currentAdmin.UserID;
+            updateAdminData.userType = currentAdmin.userType;
+            updateAdminData.update(userDataArr);
+            LS[userIndexCheck] = updateAdminData;
+            localStorage.setItem('DataArray', JSON.stringify(LS));
             userIndexCheck = null;
         }
     };

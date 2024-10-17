@@ -1,21 +1,23 @@
 let feedUpdateForm = (selectedRecord) => {
-	userFirstName.value = usersDataArray[selectedRecord].getFirstName();
-	userLastName.value = usersDataArray[selectedRecord].getLastName();
-	userEmail.value = usersDataArray[selectedRecord].getEmail();
-	userContactNumber.value = usersDataArray[selectedRecord].getContactNum();
-	userAddress.value = usersDataArray[selectedRecord].getAddress();
-	userBio.value = usersDataArray[selectedRecord].getBio();
-	imgDisplay.src = usersDataArray[selectedRecord].getProfilePic();
+	let LS = JSON.parse(localStorage.getItem('DataArray'));
+	userFirstName.value = LS[selectedRecord].FirstName;
+	userLastName.value = LS[selectedRecord].LastName;
+	userEmail.value = LS[selectedRecord].Email;
+	userContactNumber.value = LS[selectedRecord].Contact;
+	userAddress.value = LS[selectedRecord].Address;
+	userBio.value = LS[selectedRecord].Bio;
+	imgDisplay.src = LS[selectedRecord].userPicture;
 	updateAdmin(selectedRecord);
 };
 let updateAdmin = (admin) => {
-	if (usersDataArray[admin].getUserType() === "Admin") {
+	let LS = JSON.parse(localStorage.getItem('DataArray'));
+	if (LS[admin].userType === "Admin") {
 		let adminOption = document.getElementById(`admin_option`);
 		adminOption.setAttribute("selected", "selected");
 		adminAttContainer.style.display = "flex";
 		admin_heading.style.display = "block";
-		userName.value = usersDataArray[admin].getAdminName();
-		userPassword.value = usersDataArray[admin].getPassword();
+		userName.value = LS[admin].adminName;
+		userPassword.value = LS[admin].password;
 	}
 };
 let hideOptions = () => {
@@ -51,13 +53,15 @@ let delProfile = (id) => {
 	let user = new User()
 	user.delete(activeProfileID);
 };
-let updateProfile = (updateProfileBtn) => {
+let updateProfile = (id) => {
 	hideOptions();
 	window.scrollTo(200, 0);
-	let clickedBtnId = updateProfileBtn.parentElement.parentElement.nextSibling.id;
-	let selectedUser = usersDataArray.findIndex((user) => user.getID() === clickedBtnId);
-	userIndexCheck = selectedUser;
-	feedUpdateForm(selectedUser);
+	let LS = JSON.parse(localStorage.getItem('DataArray'));
+	let activeProfile = LS.find((user) => user.UserID === id)
+	let activeProfileIndex = LS.findIndex((user) => user.UserID === id)
+	let activeProfileID = activeProfile.UserID;
+	userIndexCheck = activeProfileIndex;
+	feedUpdateForm(userIndexCheck);
 };
 
 let readUpdateDelete = (userDataContainer, ProfileBtnOpsContainer, id) => {
@@ -66,5 +70,5 @@ let readUpdateDelete = (userDataContainer, ProfileBtnOpsContainer, id) => {
 	let profileDelBtn = createNewElement(["button", "Ops_Buttons", ProfileBtnOpsContainer, `Delete`, { id: "delete_btn" }]);
 	profileReadBtn.addEventListener("click", e => readProfile(id));
 	profileDelBtn.addEventListener("click", e => delProfile(id));
-	profileUpdateBtn.addEventListener("click", e => updateProfile(profileUpdateBtn));
+	profileUpdateBtn.addEventListener("click", e => updateProfile(id));
 };
