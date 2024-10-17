@@ -1,5 +1,3 @@
-//Form Image display function
-
 let imgInput = createNewElement(["input", null, ".image_input", null,
     {
         type: "file",
@@ -9,11 +7,17 @@ let imgInput = createNewElement(["input", null, ".image_input", null,
     }]);
 
 let imgDisplay = document.querySelector("#form_img");
-imgInput.addEventListener("change", () => {
-    let file = imgInput.files[0];
+imgInput.addEventListener("change", (event) => {
+    let file = event.target.files[0];
     if (file) {
-        imgDisplay.src = URL.createObjectURL(file);
         image_error_msg.style.display = "none";
+        let reader = new FileReader();
+        reader.onload = function (e) {
+            let imageDataUrl = e.target.result;
+            imgDisplay.src = imageDataUrl;
+            imgDisplay.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
     }
 });
 // Image information msg

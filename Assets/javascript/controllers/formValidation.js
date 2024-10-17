@@ -22,7 +22,7 @@ let formValidation = () => {
 		userContactNumber.value,
 		userAddress.value,
 		userBio.value,
-		URL.createObjectURL(imgInput.files[0])
+		imgDisplay.src
 	];
 	if (validationCheck) {
 		if (selectUserType.value === "Admin") {
@@ -40,7 +40,6 @@ let formValidation = () => {
 		}
 		fromReset();
 	}
-	console.log(usersDataArray);
 	refreshRecords();
 };
 charLimitCheck();

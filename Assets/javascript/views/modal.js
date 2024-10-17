@@ -1,4 +1,4 @@
-let modal = (profilePic, userName, userEmail, userContactNum, userAddress, userBio, id = null) => {
+let modal = ([profilePic, userName, userEmail, userContactNum, userAddress, userBio, id = null]) => {
   let modalMainContainer = createNewElement(["div", "modal_container", usersDataMainContainer, null, { id: `${id}` }]);
   let modalContentContainer = createNewElement(["div", "modal_content_container", modalMainContainer]);
   let modalPictureContainer = createNewElement(["div", "modal_picture_container", modalContentContainer]);

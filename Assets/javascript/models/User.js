@@ -1,15 +1,25 @@
 class User {
-  static #id = 0;
-  #FirstName;
-  #LastName;
-  #Email;
-  #Contact;
-  #Address;
-  #Bio;
-  #userPicture;
-  #UserID;
-  #userType;
-  #validator;
+  static id = 0;
+  FirstName;
+  LastName;
+  Email;
+  Contact;
+  Address;
+  Bio;
+  userPicture;
+  UserID;
+  userType;
+  validator;
+  constructor() {
+    let storedData = localStorage.getItem('DataArray');
+    if (storedData) {
+      usersDataArray = JSON.parse(storedData);
+      if (usersDataArray.length > 0) {
+        let highestID = usersDataArray.map(user => parseInt(user.UserID.slice(6))).reduce((curr, max) => curr > max ? curr : max, 0);
+        User.id = highestID;
+      }
+    }
+  }
   create([firstName, lastName, email, contact, address, bio, userPicture]) {
     this.setFirstName(firstName);
     this.setLastName(lastName);
@@ -23,11 +33,11 @@ class User {
     console.log(`This is from create Method: ${this.getID()}`);
   }
   read(clickedBtnId) {
-    let modal = usersDataArray.find((user) => user.getID() === clickedBtnId);
-    let modalContainer = document.getElementById(clickedBtnId);
+    let storedData = JSON.parse(localStorage.getItem('DataArray'));
+    let modal = storedData.find((user) => user.UserID === clickedBtnId);
     if (modal) {
-      return modalContainer;
-    } else { console.log(`Modal not found with the ID: ${clickedBtnId}`); }
+      return modal;
+    }
   }
   update([firstName, lastName, email, contact, address, bio, userPicture]) {
     let userIndex = usersDataArray.findIndex((user) => user.getID() === this.getID());
@@ -50,12 +60,12 @@ class User {
     } else { console.log(`User with ID ${this.getID()} not found.`); }
   }
   setElementValidation(attribute, regex, length) {
-    this.#validator = new Validation();
-    if (!this.#validator.elemValidationCheck(attribute, regex, length)) { return false; } else { return true; };
+    this.validator = new Validation();
+    if (!this.validator.elemValidationCheck(attribute, regex, length)) { return false; } else { return true; };
   }
   setProfilePicValidation(attr) {
-    this.#validator = new Validation();
-    if (!this.#validator.profilePicValidation(attr)) { return false; } else { return true; }
+    this.validator = new Validation();
+    if (!this.validator.profilePicValidation(attr)) { return false; } else { return true; }
   }
   createNewUser(newUserData) {
     let newUser = new Validation();
@@ -74,59 +84,59 @@ class User {
     updateAdmin.updateAdmin(updatedData);
   }
   setUserType(userType) {
-    this.#userType = userType;
+    this.userType = userType;
   }
   getUserType() {
-    return this.#userType;
+    return this.userType;
   }
   setID() {
-    User.#id += 1;
-    this.#UserID = `prof00${User.#id}`;
+    User.id += 1;
+    this.UserID = `prof00${User.id}`;
   }
   getID() {
-    return this.#UserID;
+    return this.UserID;
   }
 
   setFirstName(FName) {
-    this.#FirstName = FName;
+    this.FirstName = FName;
   }
   getFirstName() {
-    return this.#FirstName;
+    return this.FirstName;
   }
   setLastName(LName) {
-    this.#LastName = LName;
+    this.LastName = LName;
   }
   getLastName() {
-    return this.#LastName;
+    return this.LastName;
   }
   setEmail(email) {
-    this.#Email = email;
+    this.Email = email;
   }
   getEmail() {
-    return this.#Email;
+    return this.Email;
   }
   setContactNum(contact) {
-    this.#Contact = contact;
+    this.Contact = contact;
   }
   getContactNum() {
-    return this.#Contact;
+    return this.Contact;
   }
   setAddress(address) {
-    this.#Address = address;
+    this.Address = address;
   }
   getAddress() {
-    return this.#Address;
+    return this.Address;
   }
   setBio(bio) {
-    this.#Bio = bio;
+    this.Bio = bio;
   }
   getBio() {
-    return this.#Bio;
+    return this.Bio;
   }
   setProfilePic(picture) {
-    this.#userPicture = picture;
+    this.userPicture = picture;
   }
   getProfilePic() {
-    return this.#userPicture;
+    return this.userPicture;
   }
 };

@@ -24,13 +24,24 @@ let hideOptions = () => {
 	select.style.display = "none";
 	selectUserHeading.style.display = "none";
 };
-let readProfile = (readProfileBtn) => {
+let readProfile = (id) => {
 	let records = document.querySelectorAll(`.individual_user_data`);
 	records.forEach((record) => { record.style.filter = "blur(3px)"; });
-	let clickedBtnId = readProfileBtn.parentElement.parentElement.nextSibling.id;
-	let modal = usersDataArray.find((user) => user.getID() === clickedBtnId);
-	let modalContainer = modal.read(clickedBtnId);
-	modalContainer.style.display = "block";
+	let LS = JSON.parse(localStorage.getItem('DataArray'));
+	let activeProfile = LS.find((user) => user.UserID === id)
+	let activeProfileID = activeProfile.UserID;
+	let user = new User()
+	let userObj = user.read(activeProfileID);
+	modal([
+		`${userObj.userPicture}`,
+		`${userObj.FirstName} ${userObj.LastName}`,
+		`${userObj.Email}`,
+		`${userObj.Contact}`,
+		`${userObj.Address}`,
+		`${userObj.Bio}`,
+		`${userObj.UserID}`]);
+	let modal_container = document.getElementById(userObj.UserID)
+	modal_container.style.display = "block";
 	usersDataMainContainer.style.minHeight = "800px";
 };
 let delProfile = (delProfileBtn) => {
@@ -51,7 +62,7 @@ let readUpdateDelete = (userDataContainer, ProfileBtnOpsContainer, id) => {
 	let profileReadBtn = createNewElement(["button", "Ops_Buttons", ProfileBtnOpsContainer, `Read`, { id: "read_btn" }]);
 	let profileUpdateBtn = createNewElement(["button", "Ops_Buttons", ProfileBtnOpsContainer, `Update`, { id: "update_btn" }]);
 	let profileDelBtn = createNewElement(["button", "Ops_Buttons", ProfileBtnOpsContainer, `Delete`, { id: "delete_btn" }]);
-	profileReadBtn.addEventListener("click", e => readProfile(profileReadBtn));
+	profileReadBtn.addEventListener("click", e => readProfile(id));
 	profileDelBtn.addEventListener("click", e => delProfile(profileDelBtn));
 	profileUpdateBtn.addEventListener("click", e => updateProfile(profileUpdateBtn));
 };

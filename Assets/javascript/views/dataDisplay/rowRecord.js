@@ -38,5 +38,6 @@ let recordRow = (profilePic, userId, userName, userType) => {
   createNewElement(["p", "user_profile_data", userTextRecordContainer, `${userName}`, { id: "user_fullName_data" }]);
   createNewElement(["p", "user_profile_data", userTextRecordContainer, `${userType}`, { id: "user_type_data" }]);
   let ProfileBtnOpsContainer = createNewElement(["div", "profile_btns_container", userDataContainer]);
-  readUpdateDelete(userDataContainer, ProfileBtnOpsContainer);
+  readUpdateDelete(userDataContainer, ProfileBtnOpsContainer, userId);
 };
+refreshRecords();

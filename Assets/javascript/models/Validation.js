@@ -62,10 +62,17 @@ class Validation {
     };
     createUser(userDataArr) {
         successMsg(selectUserType);
-        let userDataObj = new User();
-        userDataObj.create(userDataArr);
         if (userIndexCheck === null) {
-            usersDataArray.push(userDataObj);
+            let userDataObj = new User();
+            userDataObj.create(userDataArr);
+            let storedData = localStorage.getItem('DataArray');
+            let usersDataArray = [];
+            if (storedData) { usersDataArray = JSON.parse(storedData); }
+            let existingAcc = usersDataArray.find(existingUser => existingUser.UserID === userDataObj.getID());
+            if (existingAcc) { console.log(`Account Already exists`); } else {
+                usersDataArray.push(userDataObj);
+                localStorage.setItem('DataArray', JSON.stringify(usersDataArray));
+            }
         }
     };
     updateUser(userDataArr) {
@@ -80,8 +87,16 @@ class Validation {
         } else {
             let userDataObj = new Admin();
             userDataObj.create(userDataArr);
+            console.log(userDataObj);
             if (userIndexCheck === null) {
-                usersDataArray.push(userDataObj);
+                let storedData = localStorage.getItem('DataArray');
+                let usersDataArray = [];
+                if (storedData) { usersDataArray = JSON.parse(storedData); }
+                let existingAcc = usersDataArray.find(existingUser => existingUser.UserID === userDataObj.getID());
+                if (existingAcc) { console.log(`Account Already exists`); } else {
+                    usersDataArray.push(userDataObj);
+                    localStorage.setItem('DataArray', JSON.stringify(usersDataArray));
+                }
             }
             successMsg(selectUserType);
         }
@@ -93,7 +108,10 @@ class Validation {
         }
     };
     adminExists() {
-        let adminAccount = usersDataArray.find(usersData => usersData.getUserType() == "Admin");
+        let storedData = localStorage.getItem('DataArray');
+        let usersDataArray = [];
+        if (storedData) { usersDataArray = JSON.parse(storedData); }
+        let adminAccount = usersDataArray.find(usersData => usersData.userType === "Admin");
         return adminAccount ? false : true;
     }
 };

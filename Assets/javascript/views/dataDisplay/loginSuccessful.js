@@ -5,5 +5,5 @@ let loginSuccessful = () => {
     inputContainer.style.display = "flex";
     outputContainer.style.display = "flex";
     loginPage.style.display = "none";
-    refreshRecords();
+    ;
 };

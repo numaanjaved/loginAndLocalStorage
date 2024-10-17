@@ -1,18 +1,18 @@
 class Admin extends User {
-    #adminName;
-    #password;
-    #validator;
+    adminName;
+    password;
+    validator;
     setAdminName(adminName) {
-        this.#adminName = adminName;
+        this.adminName = adminName;
     }
     getAdminName() {
-        return this.#adminName;
+        return this.adminName;
     }
     setPassword(pass) {
-        this.#password = pass;
+        this.password = pass;
     }
     getPassword() {
-        return this.#password;
+        return this.password;
     }
     constructor() {
         super();
@@ -35,8 +35,8 @@ class Admin extends User {
         Password: ${this.getPassword()}`);
     }
     CheckValidation(userName, userPass) {
-        this.#validator = new LoginValidation();
-        if (!this.#validator.checkLoginValidation(userName, userPass)) {
+        this.validator = new LoginValidation();
+        if (!this.validator.checkLoginValidation(userName, userPass)) {
             return false;
         } else { return true; }
     }
