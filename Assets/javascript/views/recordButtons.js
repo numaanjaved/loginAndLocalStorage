@@ -44,10 +44,12 @@ let readProfile = (id) => {
 	modal_container.style.display = "block";
 	usersDataMainContainer.style.minHeight = "800px";
 };
-let delProfile = (delProfileBtn) => {
-	let clickedBtnId = delProfileBtn.parentElement.parentElement.nextSibling.id;
-	let user = usersDataArray.find((user) => user.getID() === clickedBtnId);
-	if (user) { user.delete(); }
+let delProfile = (id) => {
+	let LS = JSON.parse(localStorage.getItem('DataArray'));
+	let activeProfile = LS.find((user) => user.UserID === id)
+	let activeProfileID = activeProfile.UserID;
+	let user = new User()
+	user.delete(activeProfileID);
 };
 let updateProfile = (updateProfileBtn) => {
 	hideOptions();
@@ -63,6 +65,6 @@ let readUpdateDelete = (userDataContainer, ProfileBtnOpsContainer, id) => {
 	let profileUpdateBtn = createNewElement(["button", "Ops_Buttons", ProfileBtnOpsContainer, `Update`, { id: "update_btn" }]);
 	let profileDelBtn = createNewElement(["button", "Ops_Buttons", ProfileBtnOpsContainer, `Delete`, { id: "delete_btn" }]);
 	profileReadBtn.addEventListener("click", e => readProfile(id));
-	profileDelBtn.addEventListener("click", e => delProfile(profileDelBtn));
+	profileDelBtn.addEventListener("click", e => delProfile(id));
 	profileUpdateBtn.addEventListener("click", e => updateProfile(profileUpdateBtn));
 };

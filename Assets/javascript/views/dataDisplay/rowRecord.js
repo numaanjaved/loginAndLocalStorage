@@ -23,7 +23,7 @@ let userNameErr = document.querySelector(".user_admin");
 let userPassErr = document.querySelector(".user_admin_password");
 let invalidLoginErr = document.querySelector(".invalid_login_Err");
 let image_error_msg = document.getElementById("img_error");
-if (usersDataArray.length === 0) {
+if (usersDataArray.length === 0 || localStorage.length === 0) {
   emptyRecord_msg.style.display = "block";
   emptyRecord_msg.innerHTML = `No Record Found!`;
 }

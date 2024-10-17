@@ -51,13 +51,15 @@ class User {
     refreshRecords();
     console.log(`This is from update Method: ${this.getID()}`);
   }
-  delete() {
-    let userIndex = usersDataArray.findIndex((user) => user.getID() === this.getID());
-    if (userIndex !== -1) {
-      usersDataArray.splice(userIndex, 1);
-      console.log(`User with ID ${this.getID()} has been deleted.`);
+  delete(clickedBtnId) {
+
+    let storedData = JSON.parse(localStorage.getItem('DataArray'));
+    let profileIndex = storedData.findIndex((user) => user.UserID === clickedBtnId);
+    if (profileIndex !== -1) {
+      storedData.splice(profileIndex, 1);
+      localStorage.setItem('DataArray', JSON.stringify(storedData));
       refreshRecords();
-    } else { console.log(`User with ID ${this.getID()} not found.`); }
+    }
   }
   setElementValidation(attribute, regex, length) {
     this.validator = new Validation();
