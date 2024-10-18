@@ -1,8 +1,8 @@
 runScript('./Assets/javascript/views/header.js', 'Header Script', 0);
 runScript('./Assets/javascript/views/main.js', 'Main Script', 10);
-// runScript('./Assets/javascript/views/dataDisplay/loginSuccessful.js', 'Display all Input and output', 15);
+runScript('./Assets/javascript/views/dataDisplay/loginSuccessful.js', 'Display all Input and output', 15);
 runScript('./Assets/javascript/models/Validation.js', 'Validation Class Script', 20);
-// runScript('./Assets/javascript/models/ValidationLogin.js', 'Validation Login Class Script', 25);
+runScript('./Assets/javascript/models/ValidationLogin.js', 'Validation Login Class Script', 25);
 runScript('./Assets/javascript/models/User.js', 'User Class Script', 30);
 runScript('./Assets/javascript/models/Admin.js', 'Admin Class Script', 40);
 runScript('./Assets/javascript/views/form/fromImageInput.js', 'Form Image Input Script', 50);
@@ -14,11 +14,11 @@ runScript('./Assets//javascript/views/form/charLimit.js', 'Characters Check Limi
 runScript('./Assets/javascript/views/dataDisplay/profilesDataDisplay.js', 'Profiles Data Display', 110);
 runScript('./Assets/javascript/views/refreshRecords.js', 'Refresh Record Script', 120);
 runScript('./Assets/javascript/views/recordButtons.js', 'Record Buttons Script', 105);
-// runScript('./Assets/javascript/views/loginPage/loginPageDisplay.js', 'Login page UI script', 135);
+runScript('./Assets/javascript/views/loginPage/loginPageDisplay.js', 'Login page UI script', 135);
 runScript('./Assets/javascript/views/dataDisplay/rowRecord.js', 'Each Row of record', 140);
 runScript('./Assets/javascript/views/form/errorMessages.js', 'Error Messages Script', 150);
 runScript('./Assets/javascript/views/form/formReset.js', 'form reset to default', 160);
-// runScript('./Assets/javascript/controllers/loginValidation.js', 'Login Validation', 170);
+runScript('./Assets/javascript/controllers/loginValidation.js', 'Login Validation', 170);
 runScript('./Assets/javascript/controllers/formValidation.js', 'Form Validation', 175);
 runScript('./Assets/javascript/views/modal.js', 'Modal Script', 110);
 runScript('./Assets/javascript/homePage.js', 'Home Page script', 190);

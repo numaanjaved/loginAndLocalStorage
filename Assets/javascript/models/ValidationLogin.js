@@ -1,10 +1,10 @@
 class LoginValidation {
-    #userName;
-    #userPassword;
-    setUserName(uName) { this.#userName = uName; }
-    getUserName() { return this.#userName; }
-    setUserPassword(uPassword) { this.#userPassword = uPassword; }
-    getUserPassword() { return this.#userPassword; }
+    userName;
+    userPassword;
+    setUserName(uName) { this.userName = uName; }
+    getUserName() { return this.userName; }
+    setUserPassword(uPassword) { this.userPassword = uPassword; }
+    getUserPassword() { return this.userPassword; }
     isNull(userName, userPass) {
         let nullCheck = true;
         if (userName.value === "" || userName.value === null) { nullCheck = false; }
@@ -13,16 +13,17 @@ class LoginValidation {
     }
     usernameValidation(userName, admin) {
         let userNameCheck = true;
-        if (userName.value != admin.getAdminName()) { userNameCheck = false; }
+        if (userName.value != admin.adminName) { userNameCheck = false; }
         return userNameCheck;
     }
     userPasswordValidation(userPassAttr, admin) {
         let passwordCheck = true;
-        if (userPassAttr.value != admin.getPassword()) { passwordCheck = false; }
+        if (userPassAttr.value != admin.password) { passwordCheck = false; }
         return passwordCheck;
     }
     invalidLogin(userName, userPass) {
-        let adminObj = usersDataArray.find(userData => userData.getPassword());
+        let LS = JSON.parse(localStorage.getItem('DataArray'));
+        let adminObj = LS.find(userData => userData.password);
         let MatchCheck = true;
         if (!this.usernameValidation(userName, adminObj)) { MatchCheck = false; }
         if (!this.userPasswordValidation(userPass, adminObj)) { MatchCheck = false; }
@@ -40,7 +41,10 @@ class LoginValidation {
             if (!this.invalidLogin(this.getUserName(), this.getUserPassword())) {
                 errorMsg(this.getUserName(), `${error[5].errorName}: ${error[5].errorMessage}`);
                 validateData = false;
-            } else { successMsg(this.getUserName()); }
+            } else {
+                // successMsg(this.getUserName()); 
+                console.log(this.getUserName())
+            }
         }
         return validateData;
     }
