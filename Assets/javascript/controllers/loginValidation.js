@@ -18,7 +18,6 @@ if (!existingAdmin) {
     usersDataArray.push(adminAcc);
     localStorage.setItem('DataArray', JSON.stringify(usersDataArray));
 }
-
 let userNameValue = document.getElementById("login_userName").value;
 
 let setCookie = (cookieName, cookieValue, expTime) => {
@@ -56,7 +55,8 @@ let loginValidation = () => {
     if (validationCheck) {
         let userNameValue = document.getElementById("login_userName").value;
         setCookie("userLoggedIn", userNameValue, 5);
-        loginSuccessful();
+        // loginSuccessful();
+        window.location.href = "/index.html"
     }
     loginFromReset();
 }
@@ -64,14 +64,3 @@ loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
     loginValidation();
 });
-
-
-window.onload = () => {
-    let loggedInUser = getCookie("userLoggedIn");
-    if (loggedInUser !== "") {
-        loginSuccessful();
-        console.log(`User available`);
-    } else {
-        console.log(`No user Found`);
-    }
-};
