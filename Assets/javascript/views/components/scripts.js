@@ -14,6 +14,7 @@ runScript('./Assets/javascript/views/recordButtons.js', 'Record Buttons Script',
 runScript('./Assets/javascript/views/dataDisplay/profilesDataDisplay.js', 'Profiles Data Display', 110);
 runScript('./Assets/javascript/views/modal.js', 'Modal Script', 110);
 runScript('./Assets/javascript/views/refreshRecords.js', 'Refresh Record Script', 120);
+runScript('./Assets/javascript/views/elementReferences.js', 'HTML element reference', 130);
 runScript('./Assets/javascript/views/dataDisplay/rowRecord.js', 'Each Row of record', 140);
 runScript('./Assets/javascript/views/form/errorMessages.js', 'Error Messages Script', 150);
 runScript('./Assets/javascript/views/form/formReset.js', 'form reset to default', 160);
