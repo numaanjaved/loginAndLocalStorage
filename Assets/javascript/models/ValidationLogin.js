@@ -42,8 +42,7 @@ class LoginValidation {
                 errorMsg(this.getUserName(), `${error[5].errorName}: ${error[5].errorMessage}`);
                 validateData = false;
             } else {
-                // successMsg(this.getUserName()); 
-                console.log(this.getUserName())
+                successMsg(this.getUserName());
             }
         }
         return validateData;
