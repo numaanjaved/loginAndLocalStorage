@@ -7,7 +7,7 @@ createNewElement(["label", "choose_img_label", imgInputContainer, `Upload Profil
 createNewElement(["span", null, imgInputContainer, null, { id: "img_error" }]);
 let profilePictureDisplayContainer = createNewElement(["div", "profile_picture_display_container", formProfilePicContainer]);
 createNewElement(["img", null, profilePictureDisplayContainer, null, {
-  src: "./Assets/images/default_profile.png",
-  alt: "Default profile Picture",
-  id: "form_img",
+	src: "./Assets/images/default_profile.png",
+	alt: "Default profile Picture",
+	id: "form_img",
 }]);
